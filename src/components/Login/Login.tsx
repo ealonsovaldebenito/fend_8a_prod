@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { jwtDecode } from "jwt-decode"
 import { Eye, EyeOff, Lock, User } from "lucide-react"
+import { jwtDecode } from "jwt-decode"
+import { API_URL } from "../../api/config.ts" // Asegúrate de tener esta configuración
 
 interface LoginProps {
   onLogin: () => void
@@ -21,7 +22,8 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     setError(null)
 
     try {
-      const response = await fetch("http://localhost:8000/token/", {
+      // Cambiar "localhost" por `API_URL` importado desde config.ts
+      const response = await fetch(`${API_URL}/token/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,7 +45,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         throw new Error("El token ha expirado")
       }
 
-      onLogin()
+      onLogin() // Llamar a la función onLogin para manejar el inicio de sesión
       navigate("/")
     } catch (error: any) {
       setError(error.message)

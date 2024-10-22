@@ -1,2 +1,2 @@
 // src/api/config.ts
-export const API_URL = "http://157.245.8.228:8000"
+export const API_URL = process.env.REACT_APP_API_URL
