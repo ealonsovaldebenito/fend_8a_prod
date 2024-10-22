@@ -1,0 +1,29 @@
+/* SucursalList */
+.sucursalListContainer {
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sucursalItem {
+  border-bottom: 1px solid #e1afd1;
+}
+
+.sucursalName {
+  color: #7469b6;
+  font-weight: bold;
+}
+
+.sucursalActions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sucursalButton {
+  color: #ad88c6;
+  transition: color 0.3s;
+}
+
+.sucursalButton:hover {
+  color: #7469b6;
+}

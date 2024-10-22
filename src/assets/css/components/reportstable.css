@@ -1,0 +1,68 @@
+/* SalesForm */
+.salesFormContainer {
+  padding: 2rem;
+  background-color: #f3f4f6;
+  border-radius: 8px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.salesFormTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #3f51b5;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.salesFormButton {
+  margin-right: 1rem;
+  background-color: #3f51b5;
+  color: white;
+  transition: transform 0.3s;
+}
+
+.salesFormButton:hover {
+  background-color: #303f9f;
+  transform: scale(1.05);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.snackbarMessage {
+  font-size: 1rem;
+  background-color: #ff5a5a;
+}
+
+.alertSuccess {
+  background-color: #4caf50;
+  color: white;
+}
+
+.alertError {
+  background-color: #f44336;
+  color: white;
+}
+
+.sucursalSelected {
+  background-color: #f0f4f8;
+  border-radius: 4px;
+}
+
+.statusIcon {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.statusSuccess {
+  color: #4caf50;
+}
+
+.statusError {
+  color: #f44336;
+}

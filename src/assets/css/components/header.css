@@ -1,0 +1,38 @@
+/* Header Styles */
+.appBar {
+  background-color: #ad88c6;
+  box-shadow: none;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.navLink {
+  color: white;
+  text-decoration: none;
+}
+
+.statusIndicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.statusSuccess {
+  background-color: green;
+}
+
+.statusError {
+  background-color: red;
+}
+
+.circularProgress {
+  color: white;
+}
