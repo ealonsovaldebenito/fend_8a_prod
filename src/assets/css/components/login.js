@@ -10200,7 +10200,7 @@ function fh(e, t) {
       m = async (v) => {
         v.preventDefault(), s(!0), i(null)
         try {
-          const g = await fetch("http://localhost:8000/token/", {
+          const g = await fetch("http://157.245.8.228:8000/token/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username: t, password: r }),
