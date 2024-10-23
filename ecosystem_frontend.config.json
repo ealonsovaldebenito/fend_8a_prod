@@ -1,0 +1,53 @@
+{
+  "apps": [
+    {
+      "name": "gunicorn-backend",
+      "script": "gunicorn",
+      "args": "--workers 3 --bind 0.0.0.0:8000 backend.wsgi:application",
+      "env": {
+        "DJANGO_SETTINGS_MODULE": "backend.settings",
+        "PYTHONPATH": "."
+      },
+      "autorestart": true,
+      "watch": false,
+      "max_restarts": 10
+    },
+    {
+      "name": "celery-worker",
+      "script": "celery",
+      "args": "worker -A backend --loglevel=info",
+      "env": {
+        "DJANGO_SETTINGS_MODULE": "backend.settings",
+        "PYTHONPATH": "."
+      },
+      "autorestart": true,
+      "watch": false,
+      "max_restarts": 10
+    },
+    {
+      "name": "celery-beat",
+      "script": "celery",
+      "args": "beat -A backend --loglevel=info",
+      "env": {
+        "DJANGO_SETTINGS_MODULE": "backend.settings",
+        "PYTHONPATH": "."
+      },
+      "autorestart": true,
+      "watch": false,
+      "max_restarts": 10
+    },
+    {
+      "name": "frontend",
+      "script": "npm",
+      "args": "start",
+      "cwd": "/ruta/a/tu/frontend",  // Cambia esta ruta al directorio de tu frontend
+      "env": {
+        "PORT": 3000,  // Configura el puerto que usa tu frontend
+        "NODE_ENV": "production"
+      },
+      "autorestart": true,
+      "watch": false,
+      "max_restarts": 10
+    }
+  ]
+}
