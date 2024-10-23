@@ -1,6 +1,8 @@
 import axios from "axios"
 import { API_URL } from "./config.ts"
 import { jwtDecode } from "jwt-decode"
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 // Función para manejar la autenticación con login y renovación de tokens.
 const setTokens = (access: string, refresh: string) => {
@@ -16,6 +18,7 @@ const getTokens = () => ({
 // Manejo de errores genéricos
 const handleError = (error: any, customMessage: string) => {
   console.error(`${customMessage}:`, error)
+  toast.error(customMessage)
   throw new Error(customMessage)
 }
 
@@ -35,6 +38,7 @@ export const login = async (username: string, password: string) => {
     const data = response.data
     setTokens(data.access, data.refresh)
     console.log(`Inicio de sesión exitoso para el usuario: ${username}`)
+    toast.success("Inicio de sesión exitoso")
     return data.access
   } catch (error) {
     handleError(error, "Error durante el inicio de sesión")
@@ -61,6 +65,7 @@ export const refreshToken = async () => {
     const data = response.data
     setTokens(data.access, refresh)
     console.log("Token de acceso renovado exitosamente")
+    toast.success("Token renovado con éxito")
     return data.access
   } catch (error) {
     handleLogout("Error al renovar el token")
@@ -86,6 +91,7 @@ export const handleLogout = (reason = "Sesión expirada") => {
   console.log(`Cerrando sesión: ${reason}`)
   localStorage.removeItem("token")
   localStorage.removeItem("refresh_token")
+  toast.info(reason)
   window.location.href = "/login"
 }
 
@@ -141,6 +147,18 @@ const apiRequest = async (
   }
 }
 
+// Función para hacer polling del estado de la tarea de Celery
+export const checkTaskStatus = async (taskId: string): Promise<any> => {
+  try {
+    const response = await axios.get(`${API_URL}/ventas/task_status/${taskId}/`)
+    return response.data
+  } catch (error) {
+    throw new Error(
+      "Error al consultar el estado de la tarea: " + error.message
+    )
+  }
+}
+
 // Servicio para subir datos de ventas
 export const uploadSalesData = async (
   startDate: string,
@@ -151,16 +169,37 @@ export const uploadSalesData = async (
     console.log(
       `Iniciando subida de ventas para la sucursal ${sucursalId} entre ${startDate} y ${endDate}`
     )
-    const { data, error } = await apiRequest("/ventas/upload/", "POST", {
+    toast.info(`Subida de ventas para la sucursal ${sucursalId} en progreso`)
+
+    // Iniciar la subida de ventas y obtener el task_id
+    const { data } = await axios.post(`${API_URL}/ventas/upload/`, {
       start_date: startDate,
       end_date: endDate,
       sucursal_id: sucursalId,
     })
-    if (error) throw new Error(error)
-    console.log("Subida exitosa:", data)
-    return data
-  } catch (error: any) {
+
+    const taskId = data.task_id
+    console.log(`Task ID: ${taskId}`)
+
+    // Polling para revisar el estado de la tarea
+    let taskStatus = "PENDING"
+    while (taskStatus !== "SUCCESS" && taskStatus !== "FAILURE") {
+      await new Promise((resolve) => setTimeout(resolve, 5000)) // Esperar 5 segundos antes de la siguiente consulta
+      const { status, result } = await checkTaskStatus(taskId)
+      taskStatus = status
+      console.log(`Estado de la tarea: ${taskStatus}`)
+    }
+
+    if (taskStatus === "SUCCESS") {
+      toast.success("Subida exitosa")
+      return true
+    } else {
+      toast.error("Error en la subida de ventas")
+      return false
+    }
+  } catch (error) {
     console.error("Error en uploadSalesData:", error)
+    toast.error("Error al subir datos")
     throw new Error("Error al subir datos: " + error.message)
   }
 }
@@ -171,16 +210,18 @@ export const uploadLastSalesForAllSucursales = async (): Promise<any> => {
     console.log(
       `Iniciando subida de ventas para todas las sucursales (últimos 2 días)`
     )
+    toast.info("Subida de ventas en progreso para todas las sucursales")
     const { data, error } = await apiRequest(
       "/ventas/upload_all/",
       "POST",
       null
     )
     if (error) throw new Error(error)
-    console.log("Subida exitosa de las ventas de los últimos 2 días:", data)
+    toast.success("Subida exitosa de las ventas de los últimos 2 días")
     return data
   } catch (error: any) {
     console.error("Error en uploadLastSalesForAllSucursales:", error)
+    toast.error("Error al subir las últimas ventas")
     throw new Error("Error al subir las últimas ventas: " + error.message)
   }
 }

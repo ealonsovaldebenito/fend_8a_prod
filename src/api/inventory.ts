@@ -1,5 +1,8 @@
+import axios from "axios"
 import { API_URL } from "./config.ts"
 import { jwtDecode } from "jwt-decode"
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 // Función para manejar la autenticación con login y renovación de tokens.
 const setTokens = (access: string, refresh: string) => {
@@ -15,20 +18,8 @@ const getTokens = () => ({
 // Manejo de errores genéricos
 const handleError = (error: any, customMessage: string) => {
   console.error(`${customMessage}:`, error)
+  toast.error(customMessage)
   throw new Error(customMessage)
-}
-
-// Verificar si el token ha expirado
-const isTokenExpired = (token: string) => {
-  try {
-    if (!token) return true
-    const { exp }: any = jwtDecode(token)
-    const now = Math.floor(Date.now() / 1000)
-    return exp < now
-  } catch (error) {
-    console.error("Error al verificar la expiración del token:", error)
-    return true // Si ocurre algún error, asumimos que está expirado.
-  }
 }
 
 // Refrescar el token JWT
@@ -41,24 +32,34 @@ export const refreshToken = async () => {
 
   try {
     console.log("Renovando token de acceso...")
-    const response = await fetch(`${API_URL}/token/refresh/`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ refresh }),
-    })
+    const response = await axios.post(`${API_URL}/token/refresh/`, { refresh })
 
-    if (!response.ok) {
+    if (response.status !== 200) {
       handleLogout("Error al refrescar el token")
       return
     }
 
-    const data = await response.json()
+    const data = response.data
     setTokens(data.access, refresh)
     console.log("Token de acceso renovado exitosamente")
+    toast.success("Token renovado con éxito")
     return data.access
   } catch (error) {
     handleLogout("Error al renovar el token")
     handleError(error, "Error al renovar el token")
+  }
+}
+
+// Verificar si el token ha expirado
+const isTokenExpired = (token: string) => {
+  try {
+    if (!token) return true
+    const { exp }: any = jwtDecode(token)
+    const now = Math.floor(Date.now() / 1000)
+    return exp < now
+  } catch (error) {
+    console.error("Error al verificar la expiración del token:", error)
+    return true
   }
 }
 
@@ -67,12 +68,12 @@ export const handleLogout = (reason = "Sesión expirada") => {
   console.log(`Cerrando sesión: ${reason}`)
   localStorage.removeItem("token")
   localStorage.removeItem("refresh_token")
-  window.location.href = "/login" // Redirigir al login
+  toast.info(reason)
+  window.location.href = "/login"
 }
 
-// Función genérica para hacer las solicitudes API con manejo de tokens
-// Función genérica para hacer las solicitudes API con manejo de tokens
-export const apiRequest = async (
+// Manejo de las solicitudes API con tokens
+const apiRequest = async (
   endpoint: string,
   method: string = "GET",
   body: any = null
@@ -85,16 +86,17 @@ export const apiRequest = async (
     token = await refreshToken()
     if (!token) {
       handleLogout("No se pudo renovar el token.")
-      return { data: null, error: "No se pudo renovar el token.", status: 401 }
+      return
     }
   }
 
   const url = `${API_URL}${endpoint}`
+  console.log(`URL generada para la solicitud: ${url}`)
   const options: RequestInit = {
     method,
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, // Incluimos el token en el header
+      Authorization: `Bearer ${token}`,
     },
     credentials: "include",
   }
@@ -102,102 +104,99 @@ export const apiRequest = async (
   if (body) options.body = JSON.stringify(body)
 
   try {
-    const response = await fetch(url, options)
-    const status = response.status // Obtener el status HTTP directamente
+    const response = await axios(url, options)
 
-    if (!response.ok) {
-      const errorDetails = await response.text()
-
-      if (status === 404) {
-        console.warn(`No hay datos para esta sucursal: ${errorDetails}`)
-        return { data: null, error: null, status } // Continuar con las siguientes sucursales
-      }
-
-      console.error(`Error HTTP (${status}):`, errorDetails)
-      return { data: null, error: errorDetails, status } // Retornar status aquí también
+    if (response.status !== 200) {
+      const errorDetails = response.data
+      console.error(`Error HTTP (${response.status}):`, errorDetails)
+      handleError(errorDetails, `Error HTTP: ${response.status}`)
     }
 
-    const data = await response.json()
-    return { data, error: null, status }
+    const data = response.data
+    console.log(`Respuesta exitosa de ${url}:`, data)
+    return { data, error: null }
   } catch (error) {
-    return { data: null, error: String(error), status: 500 }
+    handleError(error, `Error al realizar la solicitud a ${url}`)
   }
 }
 
-// Servicio para subir datos de inventario de forma segmentada y controlada
+// Función para hacer polling del estado de la tarea de Celery
+export const checkTaskStatus = async (taskId: string): Promise<any> => {
+  try {
+    const response = await axios.get(
+      `${API_URL}/inventory/task_status/${taskId}/`
+    )
+    return response.data
+  } catch (error) {
+    throw new Error(
+      "Error al consultar el estado de la tarea: " + error.message
+    )
+  }
+}
+
+// Servicio para subir datos de inventario
 export const uploadInventoryData = async (
   startDate: string,
   endDate: string,
-  sucursalId: string,
-  maxRetries: number = 3
+  sucursalId: string
 ): Promise<any> => {
-  let attempts = 0
+  try {
+    console.log(
+      `Iniciando subida de inventario para la sucursal ${sucursalId} entre ${startDate} y ${endDate}`
+    )
+    toast.info(
+      `Subida de inventario para la sucursal ${sucursalId} en progreso`
+    )
 
-  while (attempts < maxRetries) {
-    try {
-      console.log(
-        `Iniciando subida de inventario para la sucursal ${sucursalId} entre ${startDate} y ${endDate}`
-      )
-      const { data, error, status } = await apiRequest(
-        "/inventory/upload/",
-        "POST",
-        {
-          start_date: startDate,
-          end_date: endDate,
-          sucursal_id: sucursalId,
-        }
-      )
+    // Iniciar la subida de inventario y obtener el task_id
+    const { data } = await axios.post(`${API_URL}/inventory/upload/`, {
+      start_date: startDate,
+      end_date: endDate,
+      sucursal_id: sucursalId,
+    })
 
-      if (status === 404) {
-        console.warn(
-          `No hay datos para la sucursal ${sucursalId} en el periodo ${startDate} - ${endDate}`
-        )
-        return null // Continuar con la siguiente sucursal
-      }
+    const taskId = data.task_id
+    console.log(`Task ID: ${taskId}`)
 
-      if (status !== 200 || error) {
-        throw new Error(`Error en el servidor: ${error || status}`)
-      }
-
-      console.log(`Subida exitosa para ${startDate} - ${endDate}:`, data)
-      return data
-    } catch (error: any) {
-      attempts++
-      console.error(
-        `Error en subida de datos de inventario, intento ${attempts} de ${maxRetries}:`,
-        error
-      )
-
-      if (attempts >= maxRetries) {
-        console.error(
-          `Error al subir datos de inventario después de ${maxRetries} intentos`
-        )
-        return null // Continuar con la siguiente sucursal
-      }
+    // Polling para revisar el estado de la tarea
+    let taskStatus = "PENDING"
+    while (taskStatus !== "SUCCESS" && taskStatus !== "FAILURE") {
+      await new Promise((resolve) => setTimeout(resolve, 5000)) // Esperar 5 segundos antes de la siguiente consulta
+      const { status, result } = await checkTaskStatus(taskId)
+      taskStatus = status
+      console.log(`Estado de la tarea: ${taskStatus}`)
     }
+
+    if (taskStatus === "SUCCESS") {
+      toast.success("Subida exitosa")
+      return true
+    } else {
+      toast.error("Error en la subida de inventario")
+      return false
+    }
+  } catch (error) {
+    console.error("Error en uploadInventoryData:", error)
+    toast.error("Error al subir datos de inventario")
+    throw new Error("Error al subir datos: " + error.message)
   }
 }
 
-// Subir datos de los últimos 2 días de todas las sucursales
-export const uploadLastInventoryForAllSucursales = async (): Promise<void> => {
+// Servicio para subir los últimos datos de inventario de todas las sucursales
+export const uploadLastInventoryForAllSucursales = async (): Promise<any> => {
   try {
     console.log(
-      "Iniciando subida de inventario para todas las sucursales (últimos 2 días)"
+      `Iniciando subida de inventario para todas las sucursales (últimos 2 días)`
     )
-    const { data, error, status } = await apiRequest(
-      "/inventory/upload-last-inventory/",
-      "POST"
-    )
+    toast.info("Subida de inventario en progreso para todas las sucursales")
 
-    if (status !== 200 || error) {
-      throw new Error(`Error en el servidor: ${error || status}`)
-    }
+    const { data, error } = await apiRequest("/inventory/upload_all/", "POST")
+    if (error) throw new Error(error)
 
-    console.log("Subida exitosa de los últimos 2 días de inventario:", data)
+    toast.success("Subida exitosa de los inventarios de los últimos 2 días")
+    return data
   } catch (error: any) {
     console.error("Error en uploadLastInventoryForAllSucursales:", error)
-    throw new Error(
-      "Error al subir los últimos datos de inventario: " + error.message
-    )
+    toast.error("Error al subir los últimos inventarios")
+    throw new Error("Error al subir los últimos inventarios: " + error.message)
   }
 }

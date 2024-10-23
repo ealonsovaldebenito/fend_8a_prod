@@ -11,6 +11,7 @@ export const getSucursales = async (): Promise<Sucursal[]> => {
   try {
     const token = getAuthToken() // Obtén el token almacenado
     console.log("Iniciando la solicitud de sucursales...") // Log inicial
+    console.log("API_URL:", process.env.REACT_APP_API_URL) // Verificar si imprime el valor correcto
 
     const response = await fetch(`${API_URL}/sucursales/`, {
       method: "GET",
