@@ -43,3 +43,291 @@ OSError: [Errno 98] Address already in use
 186.11.48.114 - - [25/Oct/2024 21:34:33] "GET /static/js/main.f7f54ee7.js HTTP/1.1" 200 -
 186.11.48.114 - - [25/Oct/2024 21:34:33] "GET /manifest.json HTTP/1.1" 304 -
 186.11.48.114 - - [25/Oct/2024 21:34:33] "GET /static/css/main.ec8cbbbb.css HTTP/1.1" 200 -
+190.114.40.244 - - [25/Oct/2024 22:45:26] "GET / HTTP/1.1" 304 -
+190.114.40.244 - - [25/Oct/2024 22:45:26] "GET /static/js/main.f7f54ee7.js HTTP/1.1" 200 -
+190.114.40.244 - - [25/Oct/2024 22:45:26] "GET /static/css/main.ec8cbbbb.css HTTP/1.1" 304 -
+190.114.40.244 - - [25/Oct/2024 22:45:27] "GET /static/js/main.f7f54ee7.js HTTP/1.1" 200 -
+83.97.73.245 - - [25/Oct/2024 23:10:25] code 400, message Bad request syntax ('\\x02\\x01\\x00\\x00\\x00\\x00\\x00\\x06build')
+83.97.73.245 - - [25/Oct/2024 23:10:25] "\x02\x01\x00\x00\x00\x00\x00\x06build" 400 -
+83.97.73.245 - - [25/Oct/2024 23:10:25] code 400, message Bad request syntax ('\\x02\\x01\\x00\\x00\\x00\\x00\\x00\\x06build')
+83.97.73.245 - - [25/Oct/2024 23:10:25] "\x02\x01\x00\x00\x00\x00\x00\x06build" 400 -
+190.114.40.244 - - [25/Oct/2024 23:33:34] "GET /manifest.json HTTP/1.1" 200 -
+190.114.40.244 - - [25/Oct/2024 23:33:34] "GET /static/css/main.ec8cbbbb.css HTTP/1.1" 304 -
+190.114.40.244 - - [25/Oct/2024 23:33:34] "GET /static/js/main.f7f54ee7.js.map HTTP/1.1" 200 -
+190.114.40.244 - - [25/Oct/2024 23:33:35] "GET /static/css/main.ec8cbbbb.css.map HTTP/1.1" 304 -
+147.185.132.37 - - [26/Oct/2024 00:13:34] "GET / HTTP/1.0" 200 -
+57.151.68.20 - - [26/Oct/2024 02:01:39] "GET / HTTP/1.1" 200 -
+190.114.40.244 - - [26/Oct/2024 02:54:24] code 404, message File not found
+190.114.40.244 - - [26/Oct/2024 02:54:24] "GET /login HTTP/1.1" 404 -
+190.114.40.244 - - [26/Oct/2024 02:54:27] "GET / HTTP/1.1" 304 -
+190.114.40.244 - - [26/Oct/2024 02:54:27] "GET /static/css/main.ec8cbbbb.css HTTP/1.1" 304 -
+190.114.40.244 - - [26/Oct/2024 02:54:27] "GET /static/js/main.f7f54ee7.js HTTP/1.1" 304 -
+190.114.40.244 - - [26/Oct/2024 02:54:28] "GET /static/css/main.ec8cbbbb.css.map HTTP/1.1" 304 -
+190.114.40.244 - - [26/Oct/2024 02:54:28] "GET /static/js/main.f7f54ee7.js.map HTTP/1.1" 304 -
+----------------------------------------
+Exception occurred during processing of request from ('199.45.154.125', 57604)
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/socketserver.py", line 683, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.10/http/server.py", line 1304, in finish_request
+    self.RequestHandlerClass(request, client_address, self,
+  File "/usr/lib/python3.10/http/server.py", line 668, in __init__
+    super().__init__(*args, **kwargs)
+  File "/usr/lib/python3.10/socketserver.py", line 747, in __init__
+    self.handle()
+  File "/usr/lib/python3.10/http/server.py", line 433, in handle
+    self.handle_one_request()
+  File "/usr/lib/python3.10/http/server.py", line 401, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+199.45.154.125 - - [26/Oct/2024 04:29:40] "GET / HTTP/1.1" 200 -
+199.45.154.125 - - [26/Oct/2024 04:29:45] "GET / HTTP/1.1" 200 -
+199.45.154.125 - - [26/Oct/2024 04:29:46] "GET /favicon.ico HTTP/1.1" 200 -
+199.45.154.125 - - [26/Oct/2024 04:29:47] "GET /logo192.png HTTP/1.1" 200 -
+199.45.154.125 - - [26/Oct/2024 04:29:48] code 505, message Invalid HTTP version (2.0)
+199.45.154.125 - - [26/Oct/2024 04:29:48] "PRI * HTTP/2.0" 505 -
+207.90.244.6 - - [26/Oct/2024 07:12:28] "GET / HTTP/1.1" 200 -
+207.90.244.6 - - [26/Oct/2024 07:12:28] "GET /favicon.ico HTTP/1.1" 200 -
+159.203.124.128 - - [26/Oct/2024 07:56:30] code 400, message Bad HTTP/0.9 request type ('\\x16\\x03\\x01\\x00{\\x01\\x00\\x00w\\x03\\x03ôxK')
+159.203.124.128 - - [26/Oct/2024 07:56:30] "\x16\x03\x01\x00{\x01\x00\x00w\x03\x03ôxK\x0b\x02\x90S\x12" 400 -
+159.203.124.128 - - [26/Oct/2024 07:56:30] code 400, message Bad request version ('À\\x14À')
+159.203.124.128 - - [26/Oct/2024 07:56:30] "\x16\x03\x01\x00{\x01\x00\x00w\x03\x03\x00\x08\x84\x1f\x96\x1f%\x17ó\x81QÎ\x94\x82Ú\x95ê@* b£\x073óf\x19!@T.Ñ\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\x09À\x14À" 400 -
+159.203.124.128 - - [26/Oct/2024 07:56:30] "GET / HTTP/1.1" 200 -
+190.114.40.244 - - [26/Oct/2024 08:49:35] code 404, message File not found
+190.114.40.244 - - [26/Oct/2024 08:49:35] "GET /login HTTP/1.1" 404 -
+190.114.40.244 - - [26/Oct/2024 08:49:36] code 404, message File not found
+190.114.40.244 - - [26/Oct/2024 08:49:36] "GET /login HTTP/1.1" 404 -
+190.114.40.244 - - [26/Oct/2024 08:49:36] "GET /favicon.ico HTTP/1.1" 304 -
+190.114.40.244 - - [26/Oct/2024 08:49:38] "GET / HTTP/1.1" 304 -
+190.114.40.244 - - [26/Oct/2024 08:49:38] "GET /static/js/main.f7f54ee7.js HTTP/1.1" 304 -
+190.114.40.244 - - [26/Oct/2024 08:49:39] "GET /static/css/main.ec8cbbbb.css HTTP/1.1" 304 -
+190.114.40.244 - - [26/Oct/2024 08:49:39] "GET /static/js/main.f7f54ee7.js.map HTTP/1.1" 304 -
+190.114.40.244 - - [26/Oct/2024 08:49:39] "GET /static/css/main.ec8cbbbb.css.map HTTP/1.1" 304 -
+83.97.73.245 - - [26/Oct/2024 09:21:01] code 400, message Bad request syntax ('\\x02\\x01\\x00\\x00\\x00\\x00\\x00\\x06build')
+83.97.73.245 - - [26/Oct/2024 09:21:01] "\x02\x01\x00\x00\x00\x00\x00\x06build" 400 -
+83.97.73.245 - - [26/Oct/2024 09:21:02] code 400, message Bad request syntax ('\\x02\\x01\\x00\\x00\\x00\\x00\\x00\\x06build')
+83.97.73.245 - - [26/Oct/2024 09:21:02] "\x02\x01\x00\x00\x00\x00\x00\x06build" 400 -
+65.49.20.67 - - [26/Oct/2024 10:43:33] "GET / HTTP/1.1" 200 -
+65.49.20.67 - - [26/Oct/2024 10:43:41] "GET /favicon.ico HTTP/1.1" 200 -
+190.114.40.244 - - [26/Oct/2024 15:06:26] code 404, message File not found
+190.114.40.244 - - [26/Oct/2024 15:06:26] "GET /login HTTP/1.1" 404 -
+190.114.40.244 - - [26/Oct/2024 15:06:28] "GET /static/css/main.ec8cbbbb.css HTTP/1.1" 304 -
+190.114.40.244 - - [26/Oct/2024 15:06:28] "GET /manifest.json HTTP/1.1" 200 -
+190.114.40.244 - - [26/Oct/2024 15:06:28] "GET /static/js/main.f7f54ee7.js.map HTTP/1.1" 200 -
+190.114.40.244 - - [26/Oct/2024 15:06:29] "GET /static/css/main.ec8cbbbb.css.map HTTP/1.1" 200 -
+207.154.192.76 - - [26/Oct/2024 15:16:31] code 400, message Bad request version ('Ý\\x95!TG\\x168êS\\x0f[')
+207.154.192.76 - - [26/Oct/2024 15:16:31] "\x16\x03\x01\x00{\x01\x00\x00w\x03\x03·ñòG\x069ÔÕÇñ\x1f\x17\x1fÝ\x95!TG\x168êS\x0f[" 400 -
+207.154.192.76 - - [26/Oct/2024 15:16:31] code 400, message Bad HTTP/0.9 request type ('\\x16\\x03\\x01\\x00{\\x01\\x00\\x00w\\x03\\x03\\x13ÞÖOG\\x83Ùðgõ"ñ\\x7f(Ïn£¿ÅÝä³~ß\\x0fM¤»}\\x07¡C\\x00\\x00\\x1aÀ/À+À\\x11À\\x07À\\x13À')
+207.154.192.76 - - [26/Oct/2024 15:16:31] "\x16\x03\x01\x00{\x01\x00\x00w\x03\x03\x13ÞÖOG\x83Ùðgõ"ñ\x7f(Ïn£¿ÅÝä³~ß\x0fM¤»}\x07¡C\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\x09À\x14À" 400 -
+207.154.192.76 - - [26/Oct/2024 15:16:31] "GET / HTTP/1.1" 200 -
+190.114.41.100 - - [26/Oct/2024 20:41:13] "GET / HTTP/1.1" 304 -
+190.114.41.100 - - [26/Oct/2024 20:41:13] "GET /manifest.json HTTP/1.1" 304 -
+190.114.41.100 - - [26/Oct/2024 20:41:13] "GET /static/css/main.ec8cbbbb.css HTTP/1.1" 304 -
+190.114.41.100 - - [26/Oct/2024 20:41:13] "GET /static/js/main.f7f54ee7.js HTTP/1.1" 304 -
+172.105.128.13 - - [26/Oct/2024 23:40:15] code 400, message Bad request version ('À\\x13À')
+172.105.128.13 - - [26/Oct/2024 23:40:15] "\x16\x03\x01\x00î\x01\x00\x00ê\x03\x03\x99\x8fBè\x13\x11º\x8eI0\x85î[`äç\x86véÙkQ2ó~V\x16F¯f\x01­ þeæ6köñ\x14Ò®Ëg\x8a)V±¢9$Éåm7è·>g\x87\x13f\x10e\x00&À+À/À,À0Ì©Ì¨À\x09À\x13À" 400 -
+----------------------------------------
+Exception occurred during processing of request from ('45.79.163.53', 42413)
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/socketserver.py", line 683, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.10/http/server.py", line 1304, in finish_request
+    self.RequestHandlerClass(request, client_address, self,
+  File "/usr/lib/python3.10/http/server.py", line 668, in __init__
+    super().__init__(*args, **kwargs)
+  File "/usr/lib/python3.10/socketserver.py", line 747, in __init__
+    self.handle()
+  File "/usr/lib/python3.10/http/server.py", line 433, in handle
+    self.handle_one_request()
+  File "/usr/lib/python3.10/http/server.py", line 401, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+45.79.163.53 - - [27/Oct/2024 00:01:25] "GET / HTTP/1.1" 200 -
+45.79.181.94 - - [27/Oct/2024 00:02:24] "GET / HTTP/1.1" 200 -
+198.235.24.37 - - [27/Oct/2024 02:30:59] "GET / HTTP/1.0" 200 -
+154.212.141.225 - - [27/Oct/2024 02:53:07] "GET / HTTP/1.1" 200 -
+118.26.39.17 - - [27/Oct/2024 02:53:08] "GET / HTTP/1.1" 200 -
+118.26.39.17 - - [27/Oct/2024 02:53:08] "GET /favicon.ico HTTP/1.1" 200 -
+118.26.39.17 - - [27/Oct/2024 02:53:09] "GET /static/js/main.f7f54ee7.js HTTP/1.1" 200 -
+147.185.132.240 - - [27/Oct/2024 03:51:48] "GET / HTTP/1.1" 200 -
+64.62.197.201 - - [27/Oct/2024 05:13:07] "GET / HTTP/1.1" 200 -
+64.62.197.198 - - [27/Oct/2024 05:13:23] "GET /favicon.ico HTTP/1.1" 200 -
+92.255.57.58 - - [27/Oct/2024 05:55:58] code 400, message Bad request syntax ('\\x02\\x01\\x00\\x00\\x00\\x00\\x00\\x06build')
+92.255.57.58 - - [27/Oct/2024 05:55:58] "\x02\x01\x00\x00\x00\x00\x00\x06build" 400 -
+92.255.57.58 - - [27/Oct/2024 05:55:58] code 400, message Bad request syntax ('\\x02\\x01\\x00\\x00\\x00\\x00\\x00\\x06build')
+92.255.57.58 - - [27/Oct/2024 05:55:58] "\x02\x01\x00\x00\x00\x00\x00\x06build" 400 -
+----------------------------------------
+Exception occurred during processing of request from ('199.45.155.107', 39558)
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/socketserver.py", line 683, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.10/http/server.py", line 1304, in finish_request
+    self.RequestHandlerClass(request, client_address, self,
+  File "/usr/lib/python3.10/http/server.py", line 668, in __init__
+    super().__init__(*args, **kwargs)
+  File "/usr/lib/python3.10/socketserver.py", line 747, in __init__
+    self.handle()
+  File "/usr/lib/python3.10/http/server.py", line 433, in handle
+    self.handle_one_request()
+  File "/usr/lib/python3.10/http/server.py", line 401, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+199.45.155.107 - - [27/Oct/2024 06:13:38] code 400, message Bad request version ('À\\x14À')
+199.45.155.107 - - [27/Oct/2024 06:13:38] "\x16\x03\x01\x00î\x01\x00\x00ê\x03\x03Ø\x1btúBuí\x8d,÷ÓP\x1f.\x0f\x05{\x976õ¾A<°O[Î\x8c\x0c¦U\x9b 1&\x046zë*æ>IU\x8c¬|Ý0ßèZY+÷Ö\x8a)\x8dP\x81!Á\x9f¢\x00&Ì¨Ì©À/À0À+À,À\x13À\x09À\x14À" 400 -
+199.45.155.107 - - [27/Oct/2024 06:13:43] "GET / HTTP/1.1" 200 -
+199.45.155.107 - - [27/Oct/2024 06:13:47] "GET / HTTP/1.1" 200 -
+199.45.155.107 - - [27/Oct/2024 06:13:47] "GET /favicon.ico HTTP/1.1" 200 -
+199.45.155.107 - - [27/Oct/2024 06:13:48] "GET /logo192.png HTTP/1.1" 200 -
+199.45.155.107 - - [27/Oct/2024 06:13:48] code 505, message Invalid HTTP version (2.0)
+199.45.155.107 - - [27/Oct/2024 06:13:48] "PRI * HTTP/2.0" 505 -
+35.240.83.86 - - [27/Oct/2024 06:14:58] "GET / HTTP/1.1" 200 -
+4.255.98.186 - - [27/Oct/2024 08:04:23] "GET / HTTP/1.1" 200 -
+190.114.41.100 - - [27/Oct/2024 11:25:32] code 404, message File not found
+190.114.41.100 - - [27/Oct/2024 11:25:32] "GET /login HTTP/1.1" 404 -
+190.114.41.100 - - [27/Oct/2024 11:25:36] "GET / HTTP/1.1" 200 -
+190.114.41.100 - - [27/Oct/2024 11:53:56] code 404, message File not found
+190.114.41.100 - - [27/Oct/2024 11:53:56] "GET /ventas HTTP/1.1" 404 -
+190.114.41.100 - - [27/Oct/2024 11:54:04] "GET /static/css/main.ec8cbbbb.css HTTP/1.1" 304 -
+190.114.41.100 - - [27/Oct/2024 11:54:04] "GET /manifest.json HTTP/1.1" 304 -
+190.114.41.100 - - [27/Oct/2024 11:54:04] "GET /static/js/main.f7f54ee7.js HTTP/1.1" 304 -
+190.114.41.100 - - [27/Oct/2024 16:27:31] "GET / HTTP/1.1" 200 -
+186.11.73.155 - - [27/Oct/2024 17:00:18] "GET / HTTP/1.1" 200 -
+186.11.73.155 - - [27/Oct/2024 17:03:32] code 404, message File not found
+186.11.73.155 - - [27/Oct/2024 17:03:32] "GET /ventas HTTP/1.1" 404 -
+186.11.73.155 - - [27/Oct/2024 17:03:33] "GET /static/js/main.f7f54ee7.js HTTP/1.1" 304 -
+186.11.73.155 - - [27/Oct/2024 17:03:33] "GET /static/css/main.ec8cbbbb.css HTTP/1.1" 304 -
+45.156.128.41 - - [27/Oct/2024 19:26:19] "GET / HTTP/1.1" 200 -
+113.161.176.165 - - [27/Oct/2024 19:57:03] code 400, message Bad HTTP/0.9 request type ('\\x03\\x00\\x00/*à\\x00\\x00\\x00\\x00\\x00Cookie:')
+113.161.176.165 - - [27/Oct/2024 19:57:03] "\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie: mstshash=Administr" 400 -
+205.210.31.210 - - [27/Oct/2024 23:43:40] "GET / HTTP/1.1" 200 -
+205.210.31.105 - - [28/Oct/2024 00:11:50] "GET / HTTP/1.0" 200 -
+184.105.247.194 - - [28/Oct/2024 03:16:48] "GET / HTTP/1.1" 200 -
+184.105.247.194 - - [28/Oct/2024 03:17:05] "GET /favicon.ico HTTP/1.1" 200 -
+92.255.57.58 - - [28/Oct/2024 06:37:54] code 400, message Bad request syntax ('\\x02\\x01\\x00\\x00\\x00\\x00\\x00\\x06build')
+92.255.57.58 - - [28/Oct/2024 06:37:54] "\x02\x01\x00\x00\x00\x00\x00\x06build" 400 -
+92.255.57.58 - - [28/Oct/2024 06:37:55] code 400, message Bad request syntax ('\\x02\\x01\\x00\\x00\\x00\\x00\\x00\\x06build')
+92.255.57.58 - - [28/Oct/2024 06:37:55] "\x02\x01\x00\x00\x00\x00\x00\x06build" 400 -
+----------------------------------------
+Exception occurred during processing of request from ('206.168.34.214', 47342)
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/socketserver.py", line 683, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.10/http/server.py", line 1304, in finish_request
+    self.RequestHandlerClass(request, client_address, self,
+  File "/usr/lib/python3.10/http/server.py", line 668, in __init__
+    super().__init__(*args, **kwargs)
+  File "/usr/lib/python3.10/socketserver.py", line 747, in __init__
+    self.handle()
+  File "/usr/lib/python3.10/http/server.py", line 433, in handle
+    self.handle_one_request()
+  File "/usr/lib/python3.10/http/server.py", line 401, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+206.168.34.214 - - [28/Oct/2024 07:17:00] code 400, message Bad request version ('À\\x14À')
+206.168.34.214 - - [28/Oct/2024 07:17:00] "\x16\x03\x01\x00î\x01\x00\x00ê\x03\x03M\x07iè\x13?\x83Ä]±1 \x97I\x0cÊ«V#jóTÀ9,\x80®mõ\\R© \x99\x9d¶\x10\x9a\x14¨¦\x10ó`\x80FûSé´\x88ð\x08¸©çÜ²\x01æïý1Ú±\x00&Ì¨Ì©À/À0À+À,À\x13À\x09À\x14À" 400 -
+206.168.34.214 - - [28/Oct/2024 07:17:03] "GET / HTTP/1.1" 200 -
+206.168.34.214 - - [28/Oct/2024 07:17:07] "GET / HTTP/1.1" 200 -
+206.168.34.214 - - [28/Oct/2024 07:17:07] "GET /favicon.ico HTTP/1.1" 200 -
+206.168.34.214 - - [28/Oct/2024 07:17:07] "GET /logo192.png HTTP/1.1" 200 -
+206.168.34.214 - - [28/Oct/2024 07:17:07] code 505, message Invalid HTTP version (2.0)
+206.168.34.214 - - [28/Oct/2024 07:17:07] "PRI * HTTP/2.0" 505 -
+48.217.211.94 - - [28/Oct/2024 11:58:04] "GET / HTTP/1.1" 200 -
+190.114.40.244 - - [28/Oct/2024 14:15:36] "GET / HTTP/1.1" 304 -
+190.114.40.244 - - [28/Oct/2024 14:15:36] "GET /static/js/main.f7f54ee7.js HTTP/1.1" 200 -
+190.114.40.244 - - [28/Oct/2024 14:15:36] "GET /static/css/main.ec8cbbbb.css HTTP/1.1" 304 -
+190.114.40.244 - - [28/Oct/2024 14:15:37] "GET /static/js/main.f7f54ee7.js HTTP/1.1" 200 -
+71.6.232.20 - - [28/Oct/2024 16:18:08] "GET / HTTP/1.1" 200 -
+190.114.40.244 - - [28/Oct/2024 18:25:57] code 404, message File not found
+190.114.40.244 - - [28/Oct/2024 18:25:57] "GET /login HTTP/1.1" 404 -
+190.114.40.244 - - [28/Oct/2024 18:25:58] code 404, message File not found
+190.114.40.244 - - [28/Oct/2024 18:25:58] "GET /login HTTP/1.1" 404 -
+190.114.40.244 - - [28/Oct/2024 18:25:58] "GET /favicon.ico HTTP/1.1" 304 -
+190.114.40.244 - - [28/Oct/2024 18:26:16] code 404, message File not found
+190.114.40.244 - - [28/Oct/2024 18:26:16] "GET /login HTTP/1.1" 404 -
+147.185.132.246 - - [28/Oct/2024 19:02:38] "GET / HTTP/1.1" 200 -
+179.43.168.146 - - [28/Oct/2024 22:52:26] code 400, message Bad request version ('À\\x13À')
+179.43.168.146 - - [28/Oct/2024 22:52:26] "\x16\x03\x01\x00î\x01\x00\x00ê\x03\x03òý:¨W\x17¾*Ï\x13òÿÕ[ê¹ëüû=\x8f3ùìG*q5Û\x10\x96Æ nÏHº\x8bÚRÇì\x16èÈ`\x07.s0²î®A&w\x1aÄ¿', á½M\x00&À+À/À,À0Ì©Ì¨À\x09À\x13À" 400 -
+179.43.168.146 - - [28/Oct/2024 22:52:27] "GET / HTTP/1.1" 200 -
+179.43.168.146 - - [28/Oct/2024 22:52:27] "GET / HTTP/1.1" 200 -
+179.43.168.146 - - [28/Oct/2024 22:52:27] code 404, message File not found
+179.43.168.146 - - [28/Oct/2024 22:52:27] "GET /cgi-bin/.%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/hosts HTTP/1.1" 404 -
+179.43.168.146 - - [28/Oct/2024 22:52:27] code 404, message File not found
+179.43.168.146 - - [28/Oct/2024 22:52:27] "GET /.DS_Store HTTP/1.1" 404 -
+179.43.168.146 - - [28/Oct/2024 22:52:27] code 404, message File not found
+179.43.168.146 - - [28/Oct/2024 22:52:27] "GET /.json HTTP/1.1" 404 -
+179.43.168.146 - - [28/Oct/2024 22:52:28] code 404, message File not found
+179.43.168.146 - - [28/Oct/2024 22:52:28] "GET /login.action HTTP/1.1" 404 -
+179.43.168.146 - - [28/Oct/2024 22:52:28] code 404, message File not found
+179.43.168.146 - - [28/Oct/2024 22:52:28] "GET /api/geojson?url=file:///etc/hosts HTTP/1.1" 404 -
+179.43.168.146 - - [28/Oct/2024 22:52:28] code 404, message File not found
+179.43.168.146 - - [28/Oct/2024 22:52:28] "GET /server-status HTTP/1.1" 404 -
+179.43.168.146 - - [28/Oct/2024 22:52:28] code 404, message File not found
+179.43.168.146 - - [28/Oct/2024 22:52:28] "GET /.env HTTP/1.1" 404 -
+179.43.168.146 - - [28/Oct/2024 22:52:28] code 404, message File not found
+179.43.168.146 - - [28/Oct/2024 22:52:28] "GET /.git/config HTTP/1.1" 404 -
+179.43.168.146 - - [28/Oct/2024 22:52:29] code 404, message File not found
+179.43.168.146 - - [28/Oct/2024 22:52:29] "GET /info.php HTTP/1.1" 404 -
+179.43.168.146 - - [28/Oct/2024 22:52:29] code 404, message File not found
+179.43.168.146 - - [28/Oct/2024 22:52:29] "GET /s/lkx/_/;/META-INF/maven/com.atlassian.jira/jira-webapp-dist/pom.properties HTTP/1.1" 404 -
+179.43.168.146 - - [28/Oct/2024 22:52:29] code 404, message File not found
+179.43.168.146 - - [28/Oct/2024 22:52:29] "GET /config.json HTTP/1.1" 404 -
+179.43.168.146 - - [28/Oct/2024 22:52:29] code 404, message File not found
+179.43.168.146 - - [28/Oct/2024 22:52:29] "GET /idx_config/ HTTP/1.1" 404 -
+179.43.168.146 - - [28/Oct/2024 22:52:29] code 404, message File not found
+179.43.168.146 - - [28/Oct/2024 22:52:29] "GET /telescope/requests HTTP/1.1" 404 -
+205.210.31.75 - - [29/Oct/2024 01:06:36] "GET / HTTP/1.0" 200 -
+190.114.40.244 - - [29/Oct/2024 02:26:09] code 404, message File not found
+190.114.40.244 - - [29/Oct/2024 02:26:09] "GET /login HTTP/1.1" 404 -
+190.114.40.244 - - [29/Oct/2024 02:26:11] code 404, message File not found
+190.114.40.244 - - [29/Oct/2024 02:26:11] "GET /login HTTP/1.1" 404 -
+190.114.40.244 - - [29/Oct/2024 02:26:14] "GET / HTTP/1.1" 304 -
+190.114.40.244 - - [29/Oct/2024 02:26:14] "GET /static/css/main.ec8cbbbb.css HTTP/1.1" 304 -
+190.114.40.244 - - [29/Oct/2024 02:26:14] "GET /static/js/main.f7f54ee7.js HTTP/1.1" 304 -
+190.114.40.244 - - [29/Oct/2024 02:26:14] "GET /static/js/main.f7f54ee7.js HTTP/1.1" 200 -
+----------------------------------------
+Exception occurred during processing of request from ('199.45.155.72', 33890)
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/socketserver.py", line 683, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.10/http/server.py", line 1304, in finish_request
+    self.RequestHandlerClass(request, client_address, self,
+  File "/usr/lib/python3.10/http/server.py", line 668, in __init__
+    super().__init__(*args, **kwargs)
+  File "/usr/lib/python3.10/socketserver.py", line 747, in __init__
+    self.handle()
+  File "/usr/lib/python3.10/http/server.py", line 433, in handle
+    self.handle_one_request()
+  File "/usr/lib/python3.10/http/server.py", line 401, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+199.45.155.72 - - [29/Oct/2024 02:37:35] code 400, message Bad request version ('À\\x14À')
+199.45.155.72 - - [29/Oct/2024 02:37:35] "\x16\x03\x01\x00î\x01\x00\x00ê\x03\x03ì{\x8a\x98Mçp¨\x16}óP\x10öï\x0fÂ'\x1dªÓ\x0b\x80ì\x90ùe²Ç~Ð] ê{h\x13Ö³\x97ö8Ú\x86\x964\x87_\x81\x83ÙuÍ«Íß\x1f\x0c>M3½\x97\x89\x10\x00&Ì¨Ì©À/À0À+À,À\x13À\x09À\x14À" 400 -
+199.45.155.72 - - [29/Oct/2024 02:37:39] "GET / HTTP/1.1" 200 -
+199.45.155.72 - - [29/Oct/2024 02:37:43] "GET / HTTP/1.1" 200 -
+199.45.155.72 - - [29/Oct/2024 02:37:44] "GET /favicon.ico HTTP/1.1" 200 -
+199.45.155.72 - - [29/Oct/2024 02:37:45] "GET /logo192.png HTTP/1.1" 200 -
+199.45.155.72 - - [29/Oct/2024 02:37:45] code 505, message Invalid HTTP version (2.0)
+199.45.155.72 - - [29/Oct/2024 02:37:45] "PRI * HTTP/2.0" 505 -
+184.105.139.68 - - [29/Oct/2024 05:57:08] "GET / HTTP/1.1" 200 -
+184.105.139.68 - - [29/Oct/2024 05:57:25] "GET /favicon.ico HTTP/1.1" 200 -
+71.6.135.131 - - [29/Oct/2024 11:02:56] "GET / HTTP/1.1" 200 -
+71.6.135.131 - - [29/Oct/2024 11:02:56] "GET /favicon.ico HTTP/1.1" 200 -
+18.97.5.54 - - [29/Oct/2024 11:29:14] code 400, message Bad HTTP/0.9 request type ('\\x00')
+18.97.5.54 - - [29/Oct/2024 11:29:14] "\x00\x1eWÒ\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x07version\x04bind\x00\x00\x10\x00\x03" 400 -
+18.97.5.54 - - [29/Oct/2024 11:29:17] code 400, message Bad request syntax ('\\x00*\\x9fÎ\\x01\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x01\\x03www\\x05yahoo\\x03com\\x00\\x00\\x01\\x00\\x01\\x00\\x00)ÿÿ\\x00\\x00\\x00\\x00\\x00\\x00')
+18.97.5.54 - - [29/Oct/2024 11:29:17] "\x00*\x9fÎ\x01\x00\x00\x01\x00\x00\x00\x00\x00\x01\x03www\x05yahoo\x03com\x00\x00\x01\x00\x01\x00\x00)ÿÿ\x00\x00\x00\x00\x00\x00" 400 -
